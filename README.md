@@ -48,12 +48,13 @@ Lazy and Suspense is used to implement code splitting in React. If there is a co
 which needs to be lazy loaded, we can go with Lazy.
 
 First we keep the component ready using Lazy.
+```
 const RelatedProductsWidget = React.lazy(() => import('./RelatedProductsWidget'));
 And where ever we need
 <Suspense>
   <RelatedProductsWidget />
 </Suspense>
-
+```
  ### Question 5 :Will lazy works with React components that does not default exports?
  Answer:No
  
@@ -64,7 +65,7 @@ Here we have a component <App /> which loads
 component using Lazy.
 
 Banner.js
-
+```
 import React from "react";
 
 function Banner() {
@@ -72,9 +73,9 @@ function Banner() {
 }
 
 export default Banner;
-
+```
 And here is the <App/> component that loads <Banner />.
-
+```
 import React, { lazy, Suspense } from "react";
 
 const Banner = lazy(() => import("./Banner"));
@@ -87,6 +88,8 @@ function App() {
     </div>
   );
 }
+export default App;
+```
 For some reasons the application is not working. What can be the issue?
 
 Answer:
@@ -94,4 +97,4 @@ Answer:
 <Banner/> needs to be wrapped inside <Suspense>. Now, React is trying to load the banner component immediately.
  It is not waiting for the lazy load response. That is why it throws the error.
 
-export default App;
+
