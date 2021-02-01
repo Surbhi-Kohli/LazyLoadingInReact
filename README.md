@@ -38,6 +38,11 @@ One way to implement code-splitting is by using dynamic import() function. Webpa
 to the main bundle file.
 
 Second technique is to use Lazy and Suspense.
+ ### Question 4: Explain dynamic import usage 
+ 
+ Answer:
+ For React apps, code-splitting using dynamic import() happens on the fly if you’re using a boilerplate such as create-react-app or Next.js.
+ However, if you’re using a custom webpack setup, you should check the webpack guide for setting up code-splitting. For Babel transpiling, you need the babel-plugin-syntax-  dynamic-import plugin to parse dynamic import() correctly.
 
  ### Question 4 : How Lazy and Suspense work in React?
 
