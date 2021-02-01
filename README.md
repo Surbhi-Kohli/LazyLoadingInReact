@@ -11,14 +11,6 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -29,17 +21,77 @@ React Code-Splitting, Lazy, Suspense Interview Questions
 ### Code Splitting
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-### Question:What is bundling?
+### Question 1:What is bundling?
 
- ### Answer:
-
-  Bundling is the process of combining multiple JavaScript files to one single file without breaking the dependency hierarchy. In a React project, we make use bundlers like      Webpack or Browserify to bundle files.
+Answer:
+Bundling is the process of combining multiple JavaScript files to one single file without breaking the dependency hierarchy. In a React project, we make use bundlers like      Webpack or Browserify to bundle files.
 
  ### Question 2: What is Code Splitting? How it helps a React application?
 
 Answer:
-
 In a typical React project, all the components and their dependencies are bundled to one file. Therefore, as the size of application increases, 
 the bundle size increases. This affects performance because to show a single page in the application, we need to load the full bundle first. 
 Code splitting gives control to developer to efficiently load components on demand.
 
+ ### Question 3: How can we implement code-splitting in React?
+
+Answer:
+One way to implement code-splitting is by using dynamic import() function. Webpack will not add the files included by dynamic import using import()
+to the main bundle file.
+
+Second technique is to use Lazy and Suspense.
+
+ ### Question 4 :How Lazy and Suspense work in React?
+
+Answer:
+Lazy and Suspense is used to implement code splitting in React. If there is a component like <RelatedProductsWidget /> 
+which needs to be lazy loaded, we can go with Lazy.
+
+First we keep the component ready using Lazy.
+const RelatedProductsWidget = React.lazy(() => import('./RelatedProductsWidget'));
+And where ever we need
+<Suspense>
+  <RelatedProductsWidget />
+</Suspense>
+
+ ### Question 5 :Will lazy works with React components that does not default exports?
+ Answer:No
+ 
+
+ ### Question 6 Question:
+
+Here we have a component <App /> which loads
+component using Lazy.
+
+Banner.js
+
+import React from "react";
+
+function Banner() {
+  return <div>Here is the banner text</div>;
+}
+
+export default Banner;
+
+And here is the <App/> component that loads <Banner />.
+
+import React, { lazy, Suspense } from "react";
+
+const Banner = lazy(() => import("./Banner"));
+
+function App() {
+  return (
+    <div>
+      <h1>Lazy Loading</h1>
+      <Banner />
+    </div>
+  );
+}
+For some reasons the application is not working. What can be the issue?
+
+Answer:
+
+<Banner/> needs to be wrapped inside <Suspense>. Now, React is trying to load the banner component immediately.
+ It is not waiting for the lazy load response. That is why it throws the error.
+
+export default App;
