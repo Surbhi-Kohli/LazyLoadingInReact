@@ -3,11 +3,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
-
 In the project directory, you can run:
 
 ### `npm start`
-
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -55,7 +53,7 @@ And where ever we need
   <RelatedProductsWidget />
 </Suspense>
 ```
- ### Question 5 :Will lazy works with React components that does not default exports?
+ ### Question 5 :Will lazy works with React components that does not have default exports?
  Answer:No
  
 
@@ -96,4 +94,23 @@ Answer:
  ```<Banner/>``` needs to be wrapped inside  ```<Suspense>```. Now, React is trying to load the banner component immediately.
  It is not waiting for the lazy load response. That is why it throws the error.
 
+ ###Question 7 : What is the purpose of fallback property in Suspense?
+ 
+ Answer:```Suspense``` lazy loads a component and renders it. During the waiting time, the component which is set as fallback will be displayed.
 
+ ###Question 8 :Improve the performance of following code using Lazy and Suspense?
+ ```
+ import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './routes/Home';
+import About from './routes/About';
+
+const App = () => (
+  <Router>
+    <Switch>
+      <Route exact path="/" component={Home}/>
+      <Route path="/about" component={About}/>
+    </Switch>
+  </Router>
+);
+```
