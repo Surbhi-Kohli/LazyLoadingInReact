@@ -9,8 +9,9 @@ import asyncComponent from "./hoc/asyncComponent";
 const asyncComponent2= asyncComponent(()=>{
   return import("./Components/Component2/Component2")//Dynamic import syntax -->means whatever is passed in params to import will be imported only when the outer function is 
 })                                                      //executed
-const AsyncComponent3=React.lazy(()=>import("./Components/Component3/Component3"));
+const AsyncComponent3=React.lazy(()=>import("./Components/Component3/Component3")); //we pass a function inside React.lazy()
 //we ought to use default exports only,Named exports are not supported
+//i.e the Component3 must be default exported for it to be passed in React.lazy()
 function App() {
   const [show,setShow]=useState(false);
   const modeHandler=()=>{
