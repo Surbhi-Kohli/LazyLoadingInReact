@@ -57,7 +57,7 @@ And where ever we need
  Answer:No
  
 
- ### Question 6 Question:
+ ### Question 6 :
 
 Here we have a component <App /> which loads
 component using Lazy.
@@ -94,11 +94,15 @@ Answer:
  ```<Banner/>``` needs to be wrapped inside  ```<Suspense>```. Now, React is trying to load the banner component immediately.
  It is not waiting for the lazy load response. That is why it throws the error.
 
- ###Question 7 : What is the purpose of fallback property in Suspense?
+ ### Question 7 : What is the purpose of fallback property in Suspense?
  
  Answer:```Suspense``` lazy loads a component and renders it. During the waiting time, the component which is set as fallback will be displayed.
+ 
+ ### Question 8: Will React.lazy and suspense work with server Side rendering?
+ 
+ Answer:No
 
- ###Question 8 :Improve the performance of following code using Lazy and Suspense?
+ ### Question 9 :Improve the performance of following code using Lazy and Suspense?
  ```
  import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
