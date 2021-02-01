@@ -93,7 +93,7 @@ export default App;
 For some reasons the application is not working. What can be the issue?
 
 Answer:
- <Banner/> needs to be wrapped inside <Suspense>. Now, React is trying to load the banner component immediately.
+ ```<Banner/>``` needs to be wrapped inside  ```<Suspense>```. Now, React is trying to load the banner component immediately.
  It is not waiting for the lazy load response. That is why it throws the error.
 
 
