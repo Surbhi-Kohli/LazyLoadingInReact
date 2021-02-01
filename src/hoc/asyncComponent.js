@@ -14,6 +14,7 @@ const asyncComponent=(importComponent)=>{
             })
         }
         render(){
+               //render C ie the component obtained from dynamic import 
                const C=this.state.component;
                return C?<C {...this.props}/>:null
         }
