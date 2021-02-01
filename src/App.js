@@ -3,12 +3,12 @@ import React ,{Suspense,useState} from "react";
 import './App.css';
 import {BrowserRouter as Router,Route,NavLink,Switch } from 'react-router-dom'
 import Component1 from "./Components/Component1/Component1";//included in global bundle
-//import Component2 from "./Components/Component2/Component2";
+//import Component2 from "./Components/Component2/Component2";//this kind of import instructs webpack(the build tool) to include imported file in global bundle
 //import Component3 from "./Components/Component3/Component3";
 import asyncComponent from "./hoc/asyncComponent";
 const asyncComponent2= asyncComponent(()=>{
-  return import("./Components/Component2/Component2")//Dynamic import syntax
-})
+  return import("./Components/Component2/Component2")//Dynamic import syntax -->means whatever is passed in params to import will be imported only when the outer function is 
+})                                                      //executed
 const AsyncComponent3=React.lazy(()=>import("./Components/Component3/Component3"));
 //we ought to use default exports only,Named exports are not supported
 function App() {
@@ -49,7 +49,7 @@ function App() {
       <Route path="/Component2" exact component={asyncComponent2}/>
       <Route path="/Component3" render={()=>(<Suspense fallback={<div>loading...</div>}>
                                                <AsyncComponent3/>
-      </Suspense>)}/>
+                                          </Suspense>)}/>
       <Route path="/" component={Component1}/>
       </Switch>
     </div>
